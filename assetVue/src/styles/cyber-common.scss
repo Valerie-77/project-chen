@@ -1,0 +1,1165 @@
+:root {
+    --cyber-gap-header: 30px;
+    --cyber-gap-section: 20px;
+    --cyber-bg: #0a0a12;
+    --cyber-bg-dark: #1a1a2a;
+    --cyber-primary: #00f0ff;
+    --cyber-danger: #ff0066;
+    --cyber-success: #00ff88;
+    --cyber-purple: #ff00ff;
+    --cyber-text: #e2e8f0;
+    --cyber-text-muted: #8b8ba0;
+    --cyber-border: #00f0ff30;
+    --cyber-border-danger: #ff006650;
+}
+
+/* ===== 标题动画 ===== */
+.header-glitch {
+    color: var(--cyber-primary);
+    font-size: 24px;
+    font-weight: bold;
+    text-shadow: 0 0 10px var(--cyber-primary), 0 0 20px var(--cyber-primary), 2px 2px 0 var(--cyber-purple);
+    position: relative;
+    animation: text-flicker 3s infinite;
+    font-family: 'Microsoft YaHei', sans-serif;
+
+    &::before {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        animation: glitch-1 5s infinite linear alternate-reverse;
+        color: var(--cyber-purple);
+        z-index: -1;
+    }
+
+    &::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        animation: glitch-2 3s infinite linear alternate-reverse;
+        color: var(--cyber-primary);
+        z-index: -2;
+    }
+}
+
+.header-line {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--cyber-purple), var(--cyber-primary), transparent);
+    margin-top: 10px;
+    box-shadow: 0 0 10px var(--cyber-primary);
+}
+
+/* ===== 按钮视觉 ===== */
+.cyber-button {
+    position: relative;
+    background: linear-gradient(90deg, var(--cyber-bg), #ff00ff20, var(--cyber-bg));
+    border: 1px solid var(--cyber-border);
+    color: var(--cyber-primary);
+    text-shadow: 0 0 10px var(--cyber-primary);
+    transition: all 0.3s ease;
+    overflow: hidden;
+    margin: 0 4px;
+    font-weight: bold;
+
+    &:hover {
+        background: linear-gradient(90deg, var(--cyber-bg), #ff00ff40, var(--cyber-bg));
+        border-color: var(--cyber-primary);
+        box-shadow: 0 0 20px #00f0ff40, inset 0 0 20px #ff00ff20;
+        transform: translateY(-2px);
+    }
+
+    &.primary {
+        background: linear-gradient(90deg, var(--cyber-bg), #00f0ff20, var(--cyber-bg));
+    }
+
+    &.edit {
+        background: linear-gradient(90deg, var(--cyber-bg), #00ff8820, var(--cyber-bg));
+        color: var(--cyber-success);
+        text-shadow: 0 0 10px var(--cyber-success);
+    }
+
+    &.danger {
+        background: linear-gradient(90deg, var(--cyber-bg), #ff006620, var(--cyber-bg));
+        color: var(--cyber-danger);
+        text-shadow: 0 0 10px var(--cyber-danger);
+    }
+
+    &.cancel {
+        background: linear-gradient(90deg, var(--cyber-bg), #ff006620, var(--cyber-bg));
+        color: var(--cyber-danger);
+        text-shadow: 0 0 10px var(--cyber-danger);
+    }
+
+    .button-glitch {
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, #ffffff40, transparent);
+        transition: left 0.5s ease;
+    }
+
+    &:hover .button-glitch {
+        left: 100%;
+    }
+}
+
+/* ===== 对话框视觉 ===== */
+.cyber-dialog {
+    background: linear-gradient(135deg, var(--cyber-bg), var(--cyber-bg-dark)) !important;
+    border: 1px solid #00f0ff50 !important;
+    box-shadow: 0 0 40px #00f0ff60, inset 0 0 30px #00000080 !important;
+    border-radius: 12px !important;
+
+    .el-dialog__title {
+        color: var(--cyber-primary) !important;
+        text-shadow: 0 0 10px var(--cyber-primary) !important;
+        font-weight: bold !important;
+        font-size: 18px !important;
+    }
+
+    .el-dialog__headerbtn .el-dialog__close {
+        color: var(--cyber-danger) !important;
+        font-size: 20px !important;
+    }
+}
+
+/* ===== 输入框视觉 ===== */
+.cyber-input .el-input__wrapper {
+    background: var(--cyber-bg) !important;
+    border: 1px solid var(--cyber-border) !important;
+    box-shadow: 0 0 10px #00f0ff20, inset 0 0 10px #00000080 !important;
+    color: var(--cyber-text) !important;
+
+    &:hover,
+    &.is-focus {
+        border-color: var(--cyber-primary) !important;
+        box-shadow: 0 0 20px #00f0ff60, inset 0 0 10px #00000080 !important;
+    }
+}
+
+.cyber-form .el-form-item__label {
+    color: var(--cyber-primary) !important;
+    text-shadow: 0 0 5px var(--cyber-primary) !important;
+    font-weight: bold !important;
+}
+
+/* ===== 消息 & 确认框视觉 ===== */
+.el-message {
+    background: linear-gradient(135deg, var(--cyber-bg), var(--cyber-bg-dark)) !important;
+    border: 1px solid #00f0ff50 !important;
+    box-shadow: 0 0 30px #00f0ff40 !important;
+    color: var(--cyber-primary) !important;
+    text-shadow: 0 0 10px var(--cyber-primary) !important;
+}
+
+.cyber-message-box {
+    background: linear-gradient(135deg, var(--cyber-bg), var(--cyber-bg-dark)) !important;
+    border: 1px solid var(--cyber-border-danger) !important;
+    box-shadow: 0 0 40px #ff006660, inset 0 0 30px #00000080 !important;
+    border-radius: 12px !important;
+
+    .el-message-box__title {
+        color: var(--cyber-danger) !important;
+        text-shadow: 0 0 15px var(--cyber-danger) !important;
+        font-weight: bold !important;
+    }
+}
+
+/* ===== 统一悬停效果 ===== */
+.cyber-table .el-table__body tr:hover,
+.cyber-tree .el-tree-node__content:hover {
+    background: linear-gradient(90deg, #ff00ff10, transparent) !important;
+    color: var(--cyber-primary) !important;
+    text-shadow: 0 0 10px var(--cyber-primary) !important;
+    transform: scale(1.01);
+    transition: all 0.3s ease !important;
+}
+
+/* 表格特定样式 */
+.cyber-table .el-table__body tr:hover>td {
+    background: transparent !important;
+}
+
+/* 树形结构特定样式 */
+.cyber-tree .el-tree-node__content:hover .node-name,
+.cyber-tree .el-tree-node__content:hover .node-remark {
+    color: var(--cyber-primary) !important;
+    text-shadow: 0 0 10px var(--cyber-primary) !important;
+}
+
+/* 确保所有文字在悬停时变为青色 */
+.cyber-table .el-table__body tr:hover .cell,
+.cyber-table .el-table__body tr:hover td .el-button,
+.cyber-table .el-table__body tr:hover td .el-switch {
+    color: var(--cyber-primary) !important;
+    text-shadow: 0 0 10px var(--cyber-primary) !important;
+}
+
+/* 特殊按钮颜色保持 */
+.cyber-table .el-table__body tr:hover .cyber-button.edit,
+.cyber-tree .el-tree-node__content:hover .cyber-button.edit {
+    color: var(--cyber-success) !important;
+    text-shadow: 0 0 10px var(--cyber-success) !important;
+}
+
+.cyber-table .el-table__body tr:hover .cyber-button.danger,
+.cyber-tree .el-tree-node__content:hover .cyber-button.danger {
+    color: var(--cyber-danger) !important;
+    text-shadow: 0 0 10px var(--cyber-danger) !important;
+}
+
+/* ===== 动画定义 ===== */
+@keyframes text-flicker {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
+
+    51% {
+        opacity: 0.2;
+    }
+
+    52% {
+        opacity: 0.8;
+    }
+}
+
+@keyframes glitch-1 {
+    0% {
+        transform: translate(0);
+    }
+
+    20% {
+        transform: translate(-2px, 2px);
+    }
+
+    40% {
+        transform: translate(-2px, -2px);
+    }
+
+    60% {
+        transform: translate(2px, 2px);
+    }
+
+    80% {
+        transform: translate(2px, -2px);
+    }
+
+    100% {
+        transform: translate(0);
+    }
+}
+
+@keyframes glitch-2 {
+    0% {
+        transform: translate(0);
+    }
+
+    10% {
+        transform: translate(2px, 0);
+    }
+
+    30% {
+        transform: translate(-1px, 1px);
+    }
+
+    50% {
+        transform: translate(0, -1px);
+    }
+
+    70% {
+        transform: translate(-2px, 0);
+    }
+
+    90% {
+        transform: translate(1px, 1px);
+    }
+
+    100% {
+        transform: translate(0);
+    }
+}
+
+/* ===== 表格容器样式 ===== */
+/* ===== 表格容器样式 ===== */
+.table-container {
+    margin: 0 0 20px 0 !important;
+    border: 1px solid var(--cyber-border);
+    box-shadow: 0 0 30px #ff00ff20;
+    background: rgba(10, 10, 18, 0.85) !important;
+    backdrop-filter: blur(3px);
+    min-height: 400px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg,
+                transparent,
+                rgba(0, 240, 255, 0.15), // 增强青色
+                rgba(255, 0, 255, 0.15), // 增强粉色
+                transparent);
+        animation: scan-line 8s linear infinite; // 减慢速度
+        pointer-events: none;
+        z-index: 1;
+        mix-blend-mode: screen;
+        opacity: 0.7; // 降低透明度
+    }
+}
+
+/* 优化扫描动画 */
+@keyframes scan-line {
+    0% {
+        transform: translateX(0);
+        opacity: 0.3;
+    }
+
+    10% {
+        opacity: 0.7;
+    }
+
+    90% {
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: translateX(200%);
+        opacity: 0.3;
+    }
+}
+
+/* ===== 表格基础样式 ===== */
+.cyber-table {
+    --el-table-bg-color: transparent;
+    --el-table-header-bg-color: transparent;
+    --el-table-row-hover-bg-color: transparent;
+    flex: 1;
+    min-height: 0;
+    position: relative;
+    z-index: 2;
+    background: transparent !important;
+
+    .el-table__header-wrapper {
+        background: rgba(10, 10, 18, 0.9) !important;
+    }
+
+    .el-table__header th {
+        height: 50px !important;
+        background: var(--cyber-bg) !important;
+        color: var(--cyber-primary) !important;
+        text-shadow: 0 0 8px var(--cyber-primary);
+        font-weight: bold;
+        border-bottom: 2px solid var(--cyber-primary) !important;
+        font-size: 14px;
+        font-family: 'Microsoft YaHei', sans-serif;
+    }
+
+    .el-table__body td {
+        color: var(--cyber-text) !important;
+        border-bottom: 1px solid #00f0ff10 !important;
+    }
+
+    .el-table__empty-block {
+        background: var(--cyber-bg);
+    }
+
+    .el-table__empty-text {
+        color: var(--cyber-text-muted);
+    }
+}
+
+/* ===== 分页样式 ===== */
+.pagination-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.cyber-pagination {
+
+    .btn-prev,
+    .btn-next,
+    .number {
+        background: var(--cyber-bg) !important;
+        border: 1px solid var(--cyber-border) !important;
+        color: var(--cyber-text-muted) !important;
+        margin: 0 2px;
+
+        &:hover {
+            background: linear-gradient(90deg, #ff00ff20, transparent) !important;
+            color: var(--cyber-primary) !important;
+            border-color: var(--cyber-primary) !important;
+            text-shadow: 0 0 10px var(--cyber-primary);
+        }
+    }
+
+    .number.active {
+        background: linear-gradient(90deg, #00f0ff20, transparent) !important;
+        color: var(--cyber-primary) !important;
+        border-color: var(--cyber-primary) !important;
+        text-shadow: 0 0 10px var(--cyber-primary);
+    }
+
+    .el-pager li {
+        background: transparent !important;
+    }
+}
+
+/* ===== 树形结构样式 ===== */
+.cyber-tree {
+    background: transparent;
+    color: var(--cyber-text);
+    --el-tree-node-hover-bg-color: #ff00ff10;
+    --el-tree-text-color: var(--cyber-text);
+    --el-tree-expand-icon-color: var(--cyber-primary);
+
+    .el-tree-node__content {
+        height: 50px;
+        border-bottom: 1px solid #00f0ff10;
+        transition: all 0.3s ease;
+        position: relative;
+        background: var(--cyber-bg);
+        color: var(--cyber-text);
+    }
+
+    .el-tree-node__expand-icon {
+        color: var(--cyber-primary) !important;
+        text-shadow: 0 0 5px var(--cyber-primary);
+    }
+}
+
+/* 树节点样式 */
+.tree-node {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 8px 0;
+}
+
+.node-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.node-name {
+    color: var(--cyber-text);
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.node-remark {
+    color: var(--cyber-text-muted);
+    font-size: 12px;
+}
+
+.node-actions {
+    display: flex;
+    gap: 8px;
+}
+
+/* ===== Switch开关样式 ===== */
+.cyber-switch {
+    --el-switch-height: 24px;
+
+    .el-switch__core {
+        border: 1px solid #00f0ff50 !important;
+        background: linear-gradient(90deg, var(--cyber-bg), var(--cyber-bg-dark)) !important;
+        box-shadow: 0 0 10px #00f0ff20, inset 0 0 10px #00000080;
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, #00f0ff40, transparent);
+            transition: left 0.5s ease;
+        }
+    }
+
+    &:hover .el-switch__core::before {
+        left: 100%;
+    }
+
+    &.is-checked .el-switch__core {
+        border-color: var(--cyber-primary) !important;
+        background: linear-gradient(90deg, var(--cyber-bg), rgba(0, 240, 255, 0.2)) !important;
+        box-shadow: 0 0 15px #00f0ff40, inset 0 0 10px #00f0ff20;
+    }
+
+    &:not(.is-checked) .el-switch__core {
+        border-color: var(--cyber-border-danger) !important;
+        background: linear-gradient(90deg, var(--cyber-bg), rgba(255, 0, 102, 0.2)) !important;
+        box-shadow: 0 0 15px #ff006640, inset 0 0 10px #ff006620;
+    }
+
+    .el-switch__action {
+        background: linear-gradient(135deg, var(--cyber-primary), #0080ff) !important;
+        box-shadow: 0 0 8px var(--cyber-primary), 0 0 12px #00f0ff80;
+        border: 1px solid #ffffff50;
+    }
+
+    &:not(.is-checked) .el-switch__action {
+        background: linear-gradient(135deg, var(--cyber-danger), #ff0080) !important;
+        box-shadow: 0 0 8px var(--cyber-danger), 0 0 12px #ff006680;
+    }
+}
+
+/* ===== 上传组件样式 ===== */
+.cyber-upload {
+    display: flex !important;
+    justify-content: flex-start !important;
+    width: 100% !important;
+
+    .el-upload {
+        width: 120px !important;
+        height: 120px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        border: none !important;
+        background: transparent !important;
+    }
+}
+
+.upload-area {
+    width: 120px !important;
+    height: 120px !important;
+    border: 2px dashed var(--cyber-border) !important;
+    border-radius: 8px !important;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: linear-gradient(135deg, var(--cyber-bg), var(--cyber-bg-dark)) !important;
+
+    &:hover {
+        border-color: var(--cyber-primary) !important;
+        box-shadow: 0 0 25px #00f0ff40, inset 0 0 15px #00f0ff20 !important;
+        transform: scale(1.02);
+    }
+}
+
+.avatar-preview {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    border-radius: 6px !important;
+    border: 1px solid var(--cyber-border) !important;
+}
+
+.upload-placeholder {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: var(--cyber-primary) !important;
+    text-shadow: 0 0 8px var(--cyber-primary) !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.upload-icon {
+    font-size: 32px !important;
+    margin-bottom: 8px !important;
+    filter: drop-shadow(0 0 8px var(--cyber-primary));
+}
+
+.upload-text {
+    font-size: 12px !important;
+    text-align: center !important;
+    font-weight: bold !important;
+    line-height: 1.2 !important;
+}
+
+/* ===== 通用动画 ===== */
+@keyframes scan-line {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(200%);
+    }
+}
+
+/* ===== 表格通用样式 ===== */
+.el-table__header-wrapper {
+    background: rgba(10, 10, 18, 0.9) !important;
+}
+
+/* 清除所有白色背景 */
+.el-table,
+.el-table__body,
+.el-table__header,
+.el-table__body td,
+.el-table__header th,
+.el-table__body tr,
+.el-table--enable-row-hover .el-table__body tr:hover {
+    background: transparent !important;
+}
+
+.cyber-table {
+    background: transparent !important;
+    --el-table-bg-color: transparent;
+    --el-table-header-bg-color: transparent;
+    --el-table-row-hover-bg-color: #ff00ff10;
+    --el-table-border-color: #00f0ff20;
+}
+
+.cyber-table .el-table__header-wrapper {
+    background: linear-gradient(90deg, #0a0a12 0%, #ff00ff20 50%, #0a0a12 100%);
+}
+
+.cyber-table .el-table__body tr:hover {
+    transform: scale(1.01);
+    transition: all 0.3s ease;
+}
+
+.cyber-table .el-table__inner-wrapper::before {
+    background-color: #00f0ff20 !important;
+}
+
+/* ===== 对话框通用样式 ===== */
+.cyber-dialog .el-dialog__body {
+    background: #0a0a12 !important;
+    padding: 30px 25px !important;
+    color: #e2e8f0 !important;
+}
+
+.cyber-dialog .el-dialog__footer {
+    background: linear-gradient(90deg, #0a0a12 0%, #ff00ff10 50%, #0a0a12 100%) !important;
+    border-top: 1px solid #00f0ff30 !important;
+    padding: 20px !important;
+}
+
+/* 修复表单样式 */
+.cyber-dialog .el-form.cyber-form {
+    width: 100%;
+}
+
+.cyber-dialog .el-form.cyber-form .el-form-item {
+    margin-bottom: 20px !important;
+}
+
+.cyber-dialog .el-form.cyber-form .el-form-item__content {
+    display: flex !important;
+    align-items: center !important;
+}
+
+.cyber-form .el-form-item__content {
+    line-height: normal !important;
+}
+
+.cyber-dialog .el-dialog__body {
+    padding: 30px 25px 20px !important;
+}
+
+/* ===== 表单通用样式 ===== */
+.cyber-form .el-form-item__label {
+    min-width: 80px !important;
+    text-align: right !important;
+    padding-right: 12px !important;
+}
+
+.cyber-radio-group .el-radio {
+    color: #e2e8f0 !important;
+    margin-right: 20px !important;
+}
+
+.cyber-radio .el-radio__input.is-checked+.el-radio__label {
+    color: #00f0ff !important;
+    text-shadow: 0 0 5px #00f0ff !important;
+}
+
+.cyber-radio .el-radio__inner {
+    border: 1px solid #00f0ff50 !important;
+    background: #0a0a12 !important;
+}
+
+.cyber-radio .el-radio__inner:hover {
+    border-color: #00f0ff !important;
+}
+
+.cyber-radio .el-radio__input.is-checked .el-radio__inner {
+    background: #00f0ff !important;
+    border-color: #00f0ff !important;
+    box-shadow: 0 0 10px #00f0ff !important;
+}
+
+.cyber-switch-dialog {
+    --el-switch-on-color: rgba(0, 240, 255, 0.3) !important;
+    --el-switch-off-color: rgba(255, 0, 102, 0.3) !important;
+}
+
+/* ===== 上传组件通用样式 ===== */
+.cyber-upload .avatar-uploader-icon {
+    font-size: 32px !important;
+    color: #00f0ff !important;
+    text-shadow: 0 0 10px #00f0ff !important;
+}
+
+.cyber-upload .avatar {
+    width: 120px !important;
+    height: 120px !important;
+    display: block !important;
+    border-radius: 8px !important;
+    border: 1px solid #00f0ff50 !important;
+    object-fit: cover !important;
+}
+
+/* ===== 树形选择器通用样式 ===== */
+.el-tree-select .el-input__wrapper {
+    background: #0a0a12 !important;
+    border: 1px solid #00f0ff30 !important;
+    box-shadow: 0 0 10px #00f0ff20, inset 0 0 10px #00000080 !important;
+    color: #e2e8f0 !important;
+}
+
+.el-tree-select .el-input__wrapper:hover {
+    border-color: #00f0ff !important;
+    box-shadow: 0 0 15px #00f0ff40, inset 0 0 10px #00000080 !important;
+}
+
+.el-tree-select .el-input__wrapper.is-focus {
+    border-color: #00f0ff !important;
+    box-shadow: 0 0 20px #00f0ff60, inset 0 0 10px #00000080 !important;
+}
+
+.el-tree-select .el-input__inner {
+    color: #e2e8f0 !important;
+}
+
+/* ===== 修复按钮样式 ===== */
+.cyber-button {
+    position: relative;
+    background: linear-gradient(90deg, var(--cyber-bg), #ff00ff20, var(--cyber-bg));
+    border: 1px solid var(--cyber-border);
+    color: var(--cyber-primary) !important;
+    /* 确保字体颜色 */
+    text-shadow: 0 0 10px var(--cyber-primary) !important;
+    /* 确保发光效果 */
+    transition: all 0.3s ease;
+    overflow: hidden;
+    margin: 0 4px;
+    font-weight: bold;
+
+    /* 移除可能的白框 */
+    box-shadow: none !important;
+    outline: none !important;
+
+    &:hover {
+        background: linear-gradient(90deg, var(--cyber-bg), #ff00ff40, var(--cyber-bg));
+        border-color: var(--cyber-primary);
+        box-shadow:
+            0 0 20px #00f0ff40,
+            inset 0 0 20px #ff00ff20 !important;
+        /* 确保内发光 */
+        transform: translateY(-2px);
+        color: var(--cyber-primary) !important;
+        text-shadow: 0 0 15px var(--cyber-primary) !important;
+    }
+
+    &.primary {
+        background: linear-gradient(90deg, var(--cyber-bg), #00f0ff20, var(--cyber-bg));
+
+        &:hover {
+            box-shadow:
+                0 0 20px #00f0ff40,
+                inset 0 0 20px #00f0ff20 !important;
+        }
+    }
+
+    &.edit {
+        background: linear-gradient(90deg, var(--cyber-bg), #00ff8820, var(--cyber-bg));
+        color: var(--cyber-success) !important;
+        text-shadow: 0 0 10px var(--cyber-success) !important;
+
+        &:hover {
+            box-shadow:
+                0 0 20px #00ff8840,
+                inset 0 0 20px #00ff8820 !important;
+        }
+    }
+
+    &.danger {
+        background: linear-gradient(90deg, var(--cyber-bg), #ff006620, var(--cyber-bg));
+        color: var(--cyber-danger) !important;
+        text-shadow: 0 0 10px var(--cyber-danger) !important;
+
+        &:hover {
+            box-shadow:
+                0 0 20px #ff006640,
+                inset 0 0 20px #ff006620 !important;
+        }
+    }
+
+    .button-glitch {
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, #ffffff40, transparent);
+        transition: left 0.5s ease;
+    }
+
+    &:hover .button-glitch {
+        left: 100%;
+    }
+}
+
+/* ===== 修复白框问题 ===== */
+.cyber-button {
+
+    /* 确保没有focus和active时的白框 */
+    &:focus,
+    &:active,
+    &.is-focus {
+        outline: none !important;
+        box-shadow: none !important;
+        border-color: var(--cyber-border) !important;
+    }
+
+    /* 移除Element UI的默认focus样式 */
+    &.el-button:focus {
+        outline: none !important;
+        box-shadow: none !important;
+    }
+}
+
+/* 移除所有按钮的默认focus样式 */
+.el-button:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* ===== 修复Switch文字样式 ===== */
+.cyber-switch .el-switch__inner {
+    color: var(--cyber-primary) !important;
+    text-shadow: 0 0 5px var(--cyber-primary) !important;
+    font-weight: bold !important;
+    font-size: 12px !important;
+    transition: all 0.3s ease !important;
+}
+
+.cyber-switch.is-checked .el-switch__inner .is-active {
+    color: var(--cyber-primary) !important;
+    text-shadow:
+        0 0 5px var(--cyber-primary),
+        0 0 10px var(--cyber-primary) !important;
+}
+
+.cyber-switch:not(.is-checked) .el-switch__inner .is-inactive {
+    color: var(--cyber-danger) !important;
+    text-shadow:
+        0 0 5px var(--cyber-danger),
+        0 0 10px var(--cyber-danger) !important;
+}
+
+/* 对话框中的Switch样式 */
+.cyber-switch-dialog .el-switch__inner {
+    color: var(--cyber-primary) !important;
+    text-shadow: 0 0 5px var(--cyber-primary) !important;
+}
+
+/* ===== 强制移除所有白框 ===== */
+/* 移除所有按钮的focus轮廓 */
+button:focus,
+button:focus-visible,
+.el-button:focus,
+.el-button:focus-visible,
+.cyber-button:focus,
+.cyber-button:focus-visible {
+    outline: none !important;
+    outline-width: 0 !important;
+    box-shadow: none !important;
+    border-color: var(--cyber-border) !important;
+}
+
+/* 移除所有元素的focus轮廓 */
+*:focus,
+*:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* 特别针对Element UI按钮 */
+.el-button:focus {
+    outline: 0 !important;
+    box-shadow: none !important;
+    border-color: var(--cyber-border) !important;
+}
+
+/* 针对cyber-button的特殊处理 */
+.cyber-button {
+
+    &:focus,
+    &:active {
+        outline: none !important;
+        box-shadow: none !important;
+        border-color: var(--cyber-border) !important;
+    }
+}
+
+/* 如果还有白框，使用更极端的方法 */
+button::-moz-focus-inner {
+    border: 0 !important;
+}
+
+/* 移除所有可能的focus样式 */
+[class*="el-button"]:focus,
+[class*="cyber-button"]:focus {
+    outline: 0 !important;
+    box-shadow: none !important;
+}
+
+/* ===== 修复button-glitch白框问题 ===== */
+.cyber-button .button-glitch {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent) !important;
+    /* 降低透明度 */
+    transition: left 0.5s ease;
+    pointer-events: none;
+    /* 防止干扰 */
+    z-index: 1;
+}
+
+.cyber-button .button-glitch {
+    display: none !important;
+}
+
+/* ===== 强制移除Element UI按钮白边框 ===== */
+/* 移除所有Element UI按钮的focus边框 */
+.el-button:focus::before,
+.el-button:focus::after,
+.el-button.is-focus::before,
+.el-button.is-focus::after {
+    display: none !important;
+}
+
+/* 移除按钮的focus伪元素 */
+.el-button:focus {
+
+    &::before,
+    &::after {
+        content: none !important;
+    }
+}
+
+/* 针对cyber-button的特殊处理 */
+.cyber-button.el-button:focus {
+    border-color: var(--cyber-border) !important;
+}
+
+/* 强制移除所有可能的focus边框 */
+button.el-button:focus {
+    border-color: var(--cyber-border) !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* 移除可能的伪元素边框 */
+.el-button::before,
+.el-button::after {
+    display: none !important;
+}
+
+/* ===== 强制修复按钮边框颜色 ===== */
+.cyber-button {
+    border-color: var(--cyber-border) !important;
+
+    /* 移除所有可能的默认边框 */
+    &.el-button {
+        border-color: var(--cyber-border) !important;
+    }
+
+    /* 移除hover时的边框变化 */
+    &:hover {
+        border-color: var(--cyber-primary) !important;
+    }
+}
+
+/* 强制覆盖Element UI的默认边框颜色 */
+.el-button.cyber-button {
+    border-color: var(--cyber-border) !important;
+}
+
+/* 移除所有cyber-button的默认边框 */
+[class*="cyber-button"] {
+    border-color: var(--cyber-border) !important;
+}
+
+/* ===== 树形结构选中状态修复 ===== */
+.cyber-tree {
+    .el-tree-node {
+
+        &.is-current,
+        &.is-checked {
+            &>.el-tree-node__content {
+                background: linear-gradient(90deg, #00f0ff20, transparent) !important;
+                color: var(--cyber-primary) !important;
+
+                .node-name,
+                .node-remark,
+                .el-button {
+                    color: var(--cyber-primary) !important;
+                    text-shadow: 0 0 10px var(--cyber-primary) !important;
+                }
+
+                .cyber-button.edit {
+                    color: var(--cyber-success) !important;
+                    text-shadow: 0 0 10px var(--cyber-success) !important;
+                }
+
+                .cyber-button.danger {
+                    color: var(--cyber-danger) !important;
+                    text-shadow: 0 0 10px var(--cyber-danger) !important;
+                }
+            }
+        }
+
+        &>.el-tree-node__content {
+
+            &.is-current,
+            &.is-checked {
+                background: linear-gradient(90deg, #00f0ff20, transparent) !important;
+                color: var(--cyber-primary) !important;
+
+                .node-name,
+                .node-remark,
+                .el-button {
+                    color: var(--cyber-primary) !important;
+                    text-shadow: 0 0 10px var(--cyber-primary) !important;
+                }
+            }
+        }
+    }
+}
+
+/* 移除 Tree 组件的默认选中背景 */
+:deep(.el-tree) {
+    --el-tree-node-hover-bg-color: #ff00ff10;
+    --el-tree-node-active-color: var(--cyber-primary);
+    --el-tree-text-color: var(--cyber-text);
+}
+
+:deep(.el-tree-node__content) {
+
+    &.is-current,
+    &.is-checked {
+        background-color: transparent !important;
+        background: linear-gradient(90deg, #00f0ff20, transparent) !important;
+    }
+}
+
+:deep(.el-tree--highlight-current .el-tree-node.is-current > .el-tree-node__content) {
+    background-color: transparent !important;
+    background: linear-gradient(90deg, #00f0ff20, transparent) !important;
+}
+
+/* ===== 表格容器通用样式 ===== */
+.table-container {
+    margin: 0 0 20px 0 !important;
+    border: 1px solid var(--cyber-border);
+    box-shadow: 0 0 30px #ff00ff20;
+    background: rgba(10, 10, 18, 0.85) !important;
+    backdrop-filter: blur(3px);
+    min-height: 400px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    padding: 20px;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg,
+                transparent,
+                rgba(0, 240, 255, 0.15),
+                rgba(255, 0, 255, 0.15),
+                transparent);
+        animation: scan-line 8s linear infinite;
+        pointer-events: none;
+        z-index: 1;
+        mix-blend-mode: screen;
+        opacity: 0.7;
+    }
+}
+
+/* ===== 表格空数据状态 ===== */
+.cyber-table,
+.cyber-tree {
+
+    .el-table__empty-block,
+    .el-tree__empty-block {
+        background: transparent !important;
+        min-height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .el-table__empty-text,
+    .el-tree__empty-text {
+        color: var(--cyber-text-muted) !important;
+        font-size: 14px;
+        text-shadow: 0 0 5px var(--cyber-text-muted);
+    }
+}
+
+/* ===== 确保表格背景透明 ===== */
+.cyber-table {
+    background: transparent !important;
+
+    .el-table__body,
+    .el-table__body-wrapper,
+    .el-table__inner-wrapper {
+        background: transparent !important;
+    }
+}
+
+/* ===== 树形结构背景透明 ===== */
+.cyber-tree {
+    background: transparent !important;
+
+    .el-tree-node,
+    .el-tree-node__content {
+        background: transparent !important;
+    }
+}
