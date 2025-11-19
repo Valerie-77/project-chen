@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.system.asset05.mapper.ParentMapper">
+    <select id="selectAllParents" resultType="com.system.asset05.entity.Parent">
+        select *
+        from departments
+        order by id desc
+        limit #{page}, #{pageSize}
+    </select>
+
+    <select id="selectParentTotal" resultType="int">
+        select COUNT(id) as total
+        from departments
+    </select>
+
+    <insert id="addParent" parameterType="com.system.asset05.entity.Parent"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into departments(dept_code,
+                                dept_name,
+                                parent_id,
+                                level,
+                                path,
+                                manager_id,
+                                contact,
+                                status)
+        values (#{deptCode},
+                #{deptName},
+                #{parentId},
+                #{level},
+                #{path},
+                #{managerId},
+                #{contact},
+                #{status})
+    </insert>
+
+    <update id="updateParent" parameterType="com.system.asset05.entity.Parent">
+        update asset.departments
+        set dept_code  = #{deptCode},
+            dept_name  = #{deptName},
+            parent_id  = #{parentId},
+            level      = #{level},
+            path       = #{path},
+            manager_id = #{managerId},
+            contact    = #{contact},
+            status     = #{status}
+        where id = #{id}
+    </update>
+
+    <delete id="deleteParent" parameterType="int">
+        delete
+        from asset.departments
+        where id = #{id}
+    </delete>
+</mapper>

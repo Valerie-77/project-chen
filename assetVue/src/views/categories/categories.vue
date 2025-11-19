@@ -198,7 +198,7 @@ onMounted(loadCategories)
         </el-dialog>
     </div>
 </template>
-<style scoped>
+<style>
 .user-container {
     padding: 20px;
     position: relative;

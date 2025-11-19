@@ -22,3 +22,4 @@ mybatis:
   type-aliases-package: com.system.asset05.entity
   configuration:
     map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl  # 添加日志以便调试

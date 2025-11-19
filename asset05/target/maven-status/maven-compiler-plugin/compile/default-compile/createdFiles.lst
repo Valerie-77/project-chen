@@ -1,8 +1,13 @@
 com\system\asset05\service\UserService.class
+com\system\asset05\controller\departments\ParentController.class
+com\system\asset05\common\ResultVO.class
+com\system\asset05\mapper\ParentMapper.class
+com\system\asset05\entity\Parent.class
 com\system\asset05\service\CategoriesService.class
 com\system\asset05\controller\Categories\CategoriesController.class
 com\system\asset05\controller\FileUploadController.class
 com\system\asset05\Asset05Application.class
+com\system\asset05\service\ParentService.class
 com\system\asset05\entity\Categories.class
 com\system\asset05\entity\User.class
 com\system\asset05\config\WebConfig.class

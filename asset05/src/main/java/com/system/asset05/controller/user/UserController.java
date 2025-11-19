@@ -34,7 +34,7 @@ public class UserController {
     }
 
     @DeleteMapping("/del/{id}")
-    public R<Object> deleteUser(@PathVariable int id) {
+    public R<Object> deleteUser(@PathVariable("id") int id) {
         int result = userService.deleteUser(id);
         if (result == 0) {
             return R.failed("删除失败");
@@ -52,7 +52,9 @@ public class UserController {
     }
 
     @GetMapping("/list/{page}/{pageSize}")
-    public R<HashMap<String, Object>> selectUsers(@PathVariable int page, @PathVariable int pageSize) {
+    public R<HashMap<String, Object>> selectUsers(
+            @PathVariable("page") int page,
+            @PathVariable("pageSize") int pageSize) {
         if (pageSize <= 0 || page <= 0) {
             pageSize = 10;
             page = 1;

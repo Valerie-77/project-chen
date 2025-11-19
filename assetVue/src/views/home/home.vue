@@ -1,135 +1,135 @@
-<script setup>
-import { useRouter } from 'vue-router';
-import { onMounted, reactive, ref } from 'vue';
-const router = useRouter()
-let user = reactive({ avatar: "", username: "" });
-const dropDownHandle = (e) => {
-  switch (e) {
-    case 'userInfo':
-      break;
-    case 'setPwd':
-      break;
-    case 'loginOut':
-      sessionStorage.removeItem("user");
-      router.push("/login")
-      break;
+  <script setup>
+  import { useRouter } from 'vue-router';
+  import { onMounted, reactive, ref } from 'vue';
+  const router = useRouter()
+  let user = reactive({ avatar: "", username: "" });
+  const dropDownHandle = (e) => {
+    switch (e) {
+      case 'userInfo':
+        break;
+      case 'setPwd':
+        break;
+      case 'loginOut':
+        sessionStorage.removeItem("user");
+        router.push("/login")
+        break;
+    }
   }
-}
-const link = (index) => {
-  router.push("/" + index)
-}
-onMounted(() => {
-  const u = JSON.parse(sessionStorage.getItem("user"))
-  user.avatar = u.avatar;
-  user.userName = u.username;
-})
+  const link = (index) => {
+    router.push("/" + index)
+  }
+  onMounted(() => {
+    const u = JSON.parse(sessionStorage.getItem("user"))
+    user.avatar = u.avatar;
+    user.userName = u.username;
+  })
 </script>
-<template>
-  <el-container>
-    <el-menu active-text-color="#00f0ff" background-color="#0a0a12" class="el-menu-vertical-demo cyber-menu"
-      default-active="home" text-color="#8b8ba0" @select="link">
-
-      <div class="menu-header">
-        <div class="cyber-logo">神经网络系统</div>
-        <div class="scan-line"></div>
-      </div>
-
-      <el-menu-item index="home" class="cyber-menu-item">
-        <el-icon class="menu-icon">
-          <HomeFilled />
-        </el-icon>
-        <span class="menu-text">// 控制台</span>
-        <div class="hacker-line"></div>
-      </el-menu-item>
-
-      <el-sub-menu index="1" class="cyber-sub-menu">
-        <template #title>
-          <el-icon class="menu-icon">
-            <Tools />
-          </el-icon>
-          <span class="menu-text">// 系统管理</span>
-          <div class="hacker-line"></div>
-        </template>
-        <el-menu-item index="home/user" class="cyber-menu-item">
-          <el-icon class="menu-icon">
-            <UserFilled />
-          </el-icon>
-          <span class="menu-text">用户管理</span>
-        </el-menu-item>
-        <el-menu-item index="home/categories" class="cyber-menu-item">
-          <el-icon class="menu-icon">
-            <TrendCharts />
-          </el-icon>
-          <span class="menu-text">分类管理</span>
-        </el-menu-item>
-        <el-menu-item index="1-3" class="cyber-menu-item">
-          <el-icon class="menu-icon">
-            <Flag />
-          </el-icon>
-          <span class="menu-text">部门管理</span>
-        </el-menu-item>
-      </el-sub-menu>
-
-      <el-sub-menu index="2" class="cyber-sub-menu">
-        <template #title>
-          <el-icon class="menu-icon">
-            <Tools />
-          </el-icon>
-          <span class="menu-text">// 资产管理</span>
-          <div class="hacker-line"></div>
-        </template>
-        <el-menu-item index="2-1" class="cyber-menu-item">
-          <el-icon class="menu-icon">
-            <UserFilled />
-          </el-icon>
-          <span class="menu-text">资产清单</span>
-        </el-menu-item>
-      </el-sub-menu>
-    </el-menu>
-
+  <template>
     <el-container>
-      <el-header class="cyber-header">
-        <div class="header-glitch" data-text="神经接口控制台">神经接口控制台</div>
+      <el-menu active-text-color="#00f0ff" background-color="#0a0a12" class="el-menu-vertical-demo cyber-menu"
+        default-active="home" text-color="#8b8ba0" @select="link">
 
-        <el-dropdown @command="dropDownHandle" class="cyber-dropdown">
-          <span class="cyber-dropdown-link">
-            <div class="avatar-glitch">
-              <el-avatar src="/wallhaven-o1526l5_3840x2160.png" />
-            </div>
-            <div class="user-info">
-              <span class="username-star">★</span>
-              <span class="username">{{ user.userName || 'admin' }}</span>
-              <span class="username-star">★</span>
-            </div>
-            <el-icon class="cyber-arrow">
-              <arrow-down />
+        <div class="menu-header">
+          <div class="cyber-logo">神经网络系统</div>
+          <div class="scan-line"></div>
+        </div>
+
+        <el-menu-item index="home" class="cyber-menu-item">
+          <el-icon class="menu-icon">
+            <HomeFilled />
+          </el-icon>
+          <span class="menu-text">// 控制台</span>
+          <div class="hacker-line"></div>
+        </el-menu-item>
+
+        <el-sub-menu index="1" class="cyber-sub-menu">
+          <template #title>
+            <el-icon class="menu-icon">
+              <Tools />
             </el-icon>
-            <div class="cyber-underline"></div>
-          </span>
-          <template #dropdown>
-            <el-dropdown-menu class="cyber-dropdown-menu">
-              <el-dropdown-item command="userInfo" class="cyber-dropdown-item">
-                <span class="command-prefix">></span> 个人信息
-              </el-dropdown-item>
-              <el-dropdown-item command="setPwd" class="cyber-dropdown-item">
-                <span class="command-prefix">></span> 安全设置
-              </el-dropdown-item>
-              <el-dropdown-item command="loginOut" class="cyber-dropdown-item logout">
-                <span class="command-prefix">#</span> 退出登录
-              </el-dropdown-item>
-            </el-dropdown-menu>
+            <span class="menu-text">// 系统管理</span>
+            <div class="hacker-line"></div>
           </template>
-        </el-dropdown>
-      </el-header>
+          <el-menu-item index="home/user" class="cyber-menu-item">
+            <el-icon class="menu-icon">
+              <UserFilled />
+            </el-icon>
+            <span class="menu-text">用户管理</span>
+          </el-menu-item>
+          <el-menu-item index="home/categories" class="cyber-menu-item">
+            <el-icon class="menu-icon">
+              <TrendCharts />
+            </el-icon>
+            <span class="menu-text">分类管理</span>
+          </el-menu-item>
+          <el-menu-item index="home/parent" class="cyber-menu-item">
+            <el-icon class="menu-icon">
+              <Flag />
+            </el-icon>
+            <span class="menu-text">部门管理</span>
+          </el-menu-item>
+        </el-sub-menu>
 
-      <el-main class="cyber-main">
-        <div class="grid-lines"></div>
-        <div class="scan-effect"></div>
-        <RouterView />
-      </el-main>
+        <el-sub-menu index="2" class="cyber-sub-menu">
+          <template #title>
+            <el-icon class="menu-icon">
+              <Tools />
+            </el-icon>
+            <span class="menu-text">// 资产管理</span>
+            <div class="hacker-line"></div>
+          </template>
+          <el-menu-item index="2-1" class="cyber-menu-item">
+            <el-icon class="menu-icon">
+              <UserFilled />
+            </el-icon>
+            <span class="menu-text">资产清单</span>
+          </el-menu-item>
+        </el-sub-menu>
+      </el-menu>
+
+      <el-container>
+        <el-header class="cyber-header">
+          <div class="header-glitch" data-text="神经接口控制台">神经接口控制台</div>
+
+          <el-dropdown @command="dropDownHandle" class="cyber-dropdown">
+            <span class="cyber-dropdown-link">
+              <div class="avatar-glitch">
+                <el-avatar src="/wallhaven-o1526l5_3840x2160.png" />
+              </div>
+              <div class="user-info">
+                <span class="username-star">★</span>
+                <span class="username">{{ user.userName || 'admin' }}</span>
+                <span class="username-star">★</span>
+              </div>
+              <el-icon class="cyber-arrow">
+                <arrow-down />
+              </el-icon>
+              <div class="cyber-underline"></div>
+            </span>
+            <template #dropdown>
+              <el-dropdown-menu class="cyber-dropdown-menu">
+                <el-dropdown-item command="userInfo" class="cyber-dropdown-item">
+                  <span class="command-prefix">></span> 个人信息
+                </el-dropdown-item>
+                <el-dropdown-item command="setPwd" class="cyber-dropdown-item">
+                  <span class="command-prefix">></span> 安全设置
+                </el-dropdown-item>
+                <el-dropdown-item command="loginOut" class="cyber-dropdown-item logout">
+                  <span class="command-prefix">#</span> 退出登录
+                </el-dropdown-item>
+              </el-dropdown-menu>
+            </template>
+          </el-dropdown>
+        </el-header>
+
+        <el-main class="cyber-main">
+          <div class="grid-lines"></div>
+          <div class="scan-effect"></div>
+          <RouterView />
+        </el-main>
+      </el-container>
     </el-container>
-  </el-container>
-</template>
+  </template>
 
 <style scoped>
 .el-container {

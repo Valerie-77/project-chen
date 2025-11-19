@@ -44,11 +44,18 @@ const router = createRouter({
                     component: () => import('@/views/home/user.vue')
                 },
                 {
-                    path: 'categories',  // 移到这里
+                    path: 'categories',
                     name: 'categories',
                     component: () => import('@/views/categories/categories.vue'),
                     meta: { title: '分类管理' }
+                },
+                {
+                    path: 'parent',
+                    name: 'parent',
+                    component: () => import('@/views/parent/parent.vue'),
+                    meta: { title: '分类管理' }
                 }
+
             ]
         }
     ]
