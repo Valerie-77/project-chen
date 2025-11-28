@@ -23,8 +23,9 @@ const router = createRouter({
         {
             path: '/lenis',
             name: 'Lenis',
-            component: () => import('@/views/lenis/LenisPage.vue')
+            component: () => import('@/views/lenis/lenis.vue')
         },
+
         {
             path: '/home',
             name: 'home',
@@ -38,6 +39,7 @@ const router = createRouter({
                 }
             },
             children: [
+
                 {
                     path: 'user',
                     name: 'User',
@@ -54,7 +56,20 @@ const router = createRouter({
                     name: 'parent',
                     component: () => import('@/views/parent/parent.vue'),
                     meta: { title: '分类管理' }
+                },
+                {
+                    path: 'location',
+                    name: 'AssetLocation',
+                    component: () => import('@/views/location/location.vue'),
+                    meta: { title: '资产位置管理' }
+                },
+                {
+                    path: 'asset',
+                    name: 'asset',
+                    component: () => import('@/views/asset/asset.vue'),
+                    meta: { title: '资产清单' }
                 }
+
 
             ]
         }

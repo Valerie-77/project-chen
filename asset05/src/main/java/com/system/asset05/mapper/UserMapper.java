@@ -21,5 +21,5 @@ public interface UserMapper {
 
     int deleteUser(int id);
 
-
+    List<User> searchUser(String keyword);
 }

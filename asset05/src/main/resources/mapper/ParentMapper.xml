@@ -36,7 +36,7 @@
     </insert>
 
     <update id="updateParent" parameterType="com.system.asset05.entity.Parent">
-        update asset.departments
+        update departments
         set dept_code  = #{deptCode},
             dept_name  = #{deptName},
             parent_id  = #{parentId},
@@ -50,7 +50,13 @@
 
     <delete id="deleteParent" parameterType="int">
         delete
-        from asset.departments
+        from departments
         where id = #{id}
     </delete>
+
+    <select id="searchParent" parameterType="string" resultType="com.system.asset05.entity.Parent">
+        SELECT * FROM departments
+        WHERE dept_name LIKE CONCAT('%', #{keyword}, '%')
+    </select>
+
 </mapper>

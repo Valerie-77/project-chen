@@ -1,10 +1,14 @@
 package com.system.asset05.entity;
 
+import com.baomidou.mybatisplus.annotation.*;
 import java.time.LocalDateTime;
 import java.util.Date;
 
+@TableName("user")
 public class User {
-    private int id;
+    @TableId(type = IdType.AUTO)
+    private Integer id;
+
     private String userCode;
     private String username;
     private String password;
@@ -17,14 +21,19 @@ public class User {
     private Integer status;
     private Date lastLoginTime;
     private String lastLoginIp;
+
+    @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
+
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updateTime;
 
-    public int getId() {
+    // 原有的 getter 和 setter 方法保持不变
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

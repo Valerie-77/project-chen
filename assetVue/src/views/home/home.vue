@@ -30,6 +30,9 @@
         default-active="home" text-color="#8b8ba0" @select="link">
 
         <div class="menu-header">
+          <div class="avatar-glitch">
+            <el-avatar src="/wallhaven-o1526l5_3840x2160.png" />
+          </div>
           <div class="cyber-logo">神经网络系统</div>
           <div class="scan-line"></div>
         </div>
@@ -75,14 +78,24 @@
             <el-icon class="menu-icon">
               <Tools />
             </el-icon>
-            <span class="menu-text">// 资产管理</span>
+            <span class="menu-text">资产管理</span> <!-- 删掉 // 注释 -->
             <div class="hacker-line"></div>
           </template>
-          <el-menu-item index="2-1" class="cyber-menu-item">
-            <el-icon class="menu-icon">
+
+          <!-- 资产位置管理 -->
+          <el-menu-item index="home/location" class="cyber-sub-menu">
+            <el-icon>
+              <Location />
+            </el-icon>
+            <span>资产位置管理</span>
+          </el-menu-item>
+
+          <!-- 资产清单 -->
+          <el-menu-item index="home/asset" class="cyber-sub-menu">
+            <el-icon>
               <UserFilled />
             </el-icon>
-            <span class="menu-text">资产清单</span>
+            <span>资产清单</span>
           </el-menu-item>
         </el-sub-menu>
       </el-menu>

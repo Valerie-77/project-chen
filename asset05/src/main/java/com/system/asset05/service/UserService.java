@@ -69,4 +69,8 @@ public class UserService {
         // 使用UUID生成唯一编码
         return "U" + UUID.randomUUID().toString().replace("-", "").substring(0, 8).toUpperCase();
     }
+
+    public List<User> searchUser(String keyword) {
+        return userMapper.searchUser(keyword);
+    }
 }

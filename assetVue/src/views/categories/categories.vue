@@ -3,12 +3,33 @@ import service from "@/utils/request"
 import { ElMessage, ElMessageBox } from "element-plus"
 import { onMounted, ref, nextTick } from 'vue'
 
+
+const searchKeyword = ref('')
+
+const loadData = async () => {
+    try {
+        const res = searchKeyword.value
+            ? await service.get(`/categories/search?keyword=${encodeURIComponent(searchKeyword.value)}`)
+            : await service.get('/categories/list')
+        if (res.code === 200) {
+            treeData.value = buildTree(res.data.data || res.data)
+        }
+    } catch (error) {
+        console.log('分类加载失败', error)
+    }
+}
+
+// 页面加载和搜索时都调用这个
+onMounted(() => {
+    loadData()
+})
+
 const treeData = ref([])
 const dialogVisible = ref(false)
 const dialogTitle = ref('')
 const formRef = ref()
 const treeRef = ref()
-const currentParentId = ref(0) // 记录当前父节点ID
+const currentParentId = ref(0)
 
 const form = ref({
     id: null,
@@ -29,9 +50,9 @@ const onContainerClick = (event) => {
     }
 }
 
-// 节点点击事件
+
 const handleNodeClick = (nodeData) => {
-    currentParentId.value = nodeData.id // 记录点击的节点作为父节点
+    currentParentId.value = nodeData.id
 }
 
 const loadCategories = async () => {
@@ -54,15 +75,13 @@ const buildTree = (list) => {
 const showDialog = (data = null) => {
     dialogVisible.value = true
     if (data) {
-        // 修改现有分类
         dialogTitle.value = '修改分类'
         nextTick(() => Object.assign(form.value, data))
     } else {
-        // 新增分类 - 使用当前选中的节点作为父节点
         dialogTitle.value = '添加分类'
         form.value = {
             id: null,
-            parentId: currentParentId.value || 0, // 使用记录的父节点ID
+            parentId: currentParentId.value || 0,
             name: '',
             remark: ''
         }
@@ -128,6 +147,18 @@ onMounted(loadCategories)
 </script>
 
 <template>
+    <div class="operation-bar">
+        <el-input v-model="searchKeyword" placeholder="请输入关键词搜索" style="width: 240px; margin-right: 12px" clearable
+            @clear="loadData" @keyup.enter="loadData">
+            <template #prepend>
+                <el-button @click="loadData">
+                    <el-icon>
+                        <Search />
+                    </el-icon>
+                </el-button>
+            </template>
+        </el-input>
+    </div>
     <div class="user-container" @click="onContainerClick">
         <div class="page-header">
             <div class="header-glitch" data-text="分类管理">分类管理</div>

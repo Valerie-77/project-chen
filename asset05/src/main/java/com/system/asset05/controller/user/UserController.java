@@ -7,9 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/user")
 public class UserController {
 
     @Autowired
@@ -66,4 +67,10 @@ public class UserController {
         }
         return R.success("查询成功", result);
     }
+    @GetMapping("/search")
+    public R<List<User>> searchUser(@RequestParam(required = false) String keyword) {
+        List<User> list = userService.searchUser(keyword == null ? "" : keyword.trim());
+        return R.success("查询成功", list);
+    }
 }
+

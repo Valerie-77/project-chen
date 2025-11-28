@@ -1,5 +1,6 @@
 D:\project\asset05\asset05\src\main\java\com\system\asset05\utils\R.java
 D:\project\asset05\asset05\src\main\java\com\system\asset05\controller\Categories\CategoriesController.java
+D:\project\asset05\asset05\src\main\java\com\system\asset05\entity\Assets.java
 D:\project\asset05\asset05\src\main\java\com\system\asset05\entity\Parent.java
 D:\project\asset05\asset05\src\main\java\com\system\asset05\utils\FileUtil.java
 D:\project\asset05\asset05\src\main\java\com\system\asset05\entity\User.java
@@ -10,6 +11,7 @@ D:\project\asset05\asset05\src\main\java\com\system\asset05\controller\departmen
 D:\project\asset05\asset05\src\main\java\com\system\asset05\controller\user\UserController.java
 D:\project\asset05\asset05\src\main\java\com\system\asset05\service\UserService.java
 D:\project\asset05\asset05\src\main\java\com\system\asset05\entity\Categories.java
+D:\project\asset05\asset05\src\main\java\com\system\asset05\controller\SearchController.java
 D:\project\asset05\asset05\src\main\java\com\system\asset05\Asset05Application.java
 D:\project\asset05\asset05\src\main\java\com\system\asset05\mapper\ParentMapper.java
 D:\project\asset05\asset05\src\main\java\com\system\asset05\service\ParentService.java

@@ -37,4 +37,10 @@ public class CategoriesService {
         int count = categoriesMapper.countChildrenByParentId(id);
         return count > 0;
     }
+    public List<Categories> searchCategories(String keyword) {
+        if (keyword == null || keyword.trim().isEmpty()) {
+            return categoriesMapper.getCategories();
+        }
+        return categoriesMapper.searchCategories("%" + keyword.trim() + "%");
+    }
 }

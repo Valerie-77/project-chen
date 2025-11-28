@@ -3,6 +3,27 @@ import service from "@/utils/request"
 import { ElMessage, ElMessageBox } from "element-plus"
 import { onMounted, ref, nextTick } from 'vue'
 
+const searchKeyword = ref('')
+
+const loadData = async () => {
+    try {
+        const res = searchKeyword.value
+            ? await service.get(`/parent/search?keyword=${encodeURIComponent(searchKeyword.value)}`)
+            : await service.get('/parent/list/1/1000')
+        if (res.code === 200) {
+            treeData.value = buildTree(res.data.data || res.data)
+        }
+    } catch (error) {
+        console.log('部门加载失败', error)
+    }
+}
+
+// 页面加载和搜索时都调用这个
+onMounted(() => {
+    loadData()
+})
+
+
 const treeData = ref([])
 const dialogVisible = ref(false)
 const dialogTitle = ref('')
@@ -186,6 +207,20 @@ onMounted(loadDepartments)
 </script>
 
 <template>
+
+    <div class="operation-bar">
+        <el-input v-model="searchKeyword" placeholder="请输入关键词搜索" style="width: 240px; margin-right: 12px" clearable
+            @clear="loadData" @keyup.enter="loadData">
+            <template #prepend>
+                <el-button @click="loadData">
+                    <el-icon>
+                        <Search />
+                    </el-icon>
+                </el-button>
+            </template>
+        </el-input>
+    </div>
+
     <div class="user-container" @click="onContainerClick">
         <div class="page-header">
             <div class="header-glitch" data-text="部门管理">部门管理</div>
@@ -370,7 +405,6 @@ onMounted(loadDepartments)
     padding: 16px;
 }
 
-/* 只需要添加数字输入框的特殊样式 */
 :deep(.cyber-input-number .el-input-number__decrease),
 :deep(.cyber-input-number .el-input-number__increase) {
     background: linear-gradient(135deg, var(--cyber-bg), var(--cyber-bg-dark)) !important;

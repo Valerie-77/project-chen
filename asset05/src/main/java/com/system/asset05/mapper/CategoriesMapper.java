@@ -17,4 +17,6 @@ public interface CategoriesMapper {
     int deleteCategories(int id);
 
     int countChildrenByParentId(Integer parentId);
+
+    List<Categories> searchCategories(String keyword);
 }

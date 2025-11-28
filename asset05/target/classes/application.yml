@@ -1,25 +1,48 @@
 spring:
   application:
     name: asset05
+
   servlet:
     multipart:
       max-file-size: 10MB
       max-request-size: 10MB
+
   web:
     resources:
       static-locations: classpath:/static/,file:${upload.path}
+
   datasource:
-    url: jdbc:mysql://localhost:3306/asset
+    url: jdbc:mysql://localhost:3306/asset?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
     username: root
     password: 929577
     driver-class-name: com.mysql.cj.jdbc.Driver
 
-upload:
-  path: D:\project\asset05\asset05\pic
+  output:
+    ansi:
+      enabled: always
 
-mybatis:
+# 文件上传路径
+upload:
+  path: D:/project/asset05/asset05/pic
+
+# MyBatis-Plus 配置（关键的两行已经加上！）
+mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.system.asset05.entity
+
+  # 关键配置 1：彻底终结 factoryBeanObjectType 错误（2025年实测最有效）
   configuration:
     map-underscore-to-camel-case: true
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl  # 添加日志以便调试
+    cache-enabled: false                 # 这一行是核武器！
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+  # 关键配置 2：再加一层保险（可选但强烈推荐）
+  global-config:
+    banner: false
+
+# 日志配置
+logging:
+  level:
+    com.system.asset05.mapper: debug
+    # 可选：开启 MyBatis-Plus 内部日志，看看是不是真的不报错了
+    com.baomidou.mybatisplus: debug

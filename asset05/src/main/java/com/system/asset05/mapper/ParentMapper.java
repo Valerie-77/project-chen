@@ -19,4 +19,6 @@ public interface ParentMapper {
 
     int deleteParent(int id);
 
+    List<Parent> searchParent(String keyword);
+
 }

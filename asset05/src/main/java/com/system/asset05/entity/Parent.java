@@ -1,40 +1,37 @@
 package com.system.asset05.entity;
 
+import com.baomidou.mybatisplus.annotation.*;
+import java.time.LocalDateTime;
+
+@TableName("parent")
 public class Parent {
-    private int id;
+    @TableId(type = IdType.AUTO)
+    private Integer id;
+
     private String deptCode;
     private String deptName;
-    private int parentId;
-    private int level;
+    private Integer parentId;
+    private Integer level;
     private String path;
-    private int manager_id;  // 保持原有属性名
+
+    @TableField("manager_id")
+    private Integer managerId;
+
     private String contact;
-    private int status;
+    private Integer status;
 
-    // 添加 managerId 的 getter 和 setter（驼峰命名）
-    public int getManagerId() {
-        return manager_id;
-    }
+    @TableField(fill = FieldFill.INSERT)
+    private LocalDateTime createTime;
 
-    public void setManagerId(int managerId) {
-        this.manager_id = managerId;
-    }
+    @TableField(fill = FieldFill.INSERT_UPDATE)
+    private LocalDateTime updateTime;
 
-    // 保持原有的 manager_id 的 getter/setter
-    public int getManager_id() {
-        return manager_id;
-    }
-
-    public void setManager_id(int manager_id) {
-        this.manager_id = manager_id;
-    }
-
-    // 其他已有的 getter/setter 保持不变...
-    public int getId() {
+    // 原有的 getter 和 setter 方法
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -54,19 +51,19 @@ public class Parent {
         this.deptName = deptName;
     }
 
-    public int getParentId() {
+    public Integer getParentId() {
         return parentId;
     }
 
-    public void setParentId(int parentId) {
+    public void setParentId(Integer parentId) {
         this.parentId = parentId;
     }
 
-    public int getLevel() {
+    public Integer getLevel() {
         return level;
     }
 
-    public void setLevel(int level) {
+    public void setLevel(Integer level) {
         this.level = level;
     }
 
@@ -78,6 +75,14 @@ public class Parent {
         this.path = path;
     }
 
+    public Integer getManagerId() {
+        return managerId;
+    }
+
+    public void setManagerId(Integer managerId) {
+        this.managerId = managerId;
+    }
+
     public String getContact() {
         return contact;
     }
@@ -86,12 +91,28 @@ public class Parent {
         this.contact = contact;
     }
 
-    public int getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public LocalDateTime getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(LocalDateTime createTime) {
+        this.createTime = createTime;
+    }
+
+    public LocalDateTime getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(LocalDateTime updateTime) {
+        this.updateTime = updateTime;
     }
 
     @Override
@@ -103,9 +124,11 @@ public class Parent {
                 ", parentId=" + parentId +
                 ", level=" + level +
                 ", path='" + path + '\'' +
-                ", manager_id=" + manager_id +
+                ", managerId=" + managerId +
                 ", contact='" + contact + '\'' +
                 ", status=" + status +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
                 '}';
     }
 }

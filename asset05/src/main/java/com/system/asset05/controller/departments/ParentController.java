@@ -7,9 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/parent")
+@RequestMapping("/api/parent")
 public class ParentController {
 
     @Autowired
@@ -57,4 +61,56 @@ public class ParentController {
         }
         return R.success("查询成功", result);
     }
+    @GetMapping("/search")
+    public R<List<Parent>> searchParent(@RequestParam(required = false) String keyword) {
+        // 用你现有的全量查询方法
+        HashMap<String, Object> allMap = parentService.selectAllParent(0, Integer.MAX_VALUE);
+        List<Parent> allList =  (List<Parent>) allMap.get("data");
+
+        if (keyword == null || keyword.trim().isEmpty()) {
+            return R.success("查询成功", allList);
+        }
+
+        String kw = keyword.toLowerCase().trim();
+        Set<Integer> matchedIds = new HashSet<>();
+
+        // 1. 找出直接匹配的节点
+        for (Parent p : allList) {
+            if ((p.getDeptName() != null && p.getDeptName().toLowerCase().contains(kw)) ||
+                    (p.getContact() != null && p.getContact().toLowerCase().contains(kw))) {
+                matchedIds.add(p.getId());
+            }
+        }
+
+        // 2. 把所有父节点和子节点都加进来
+        boolean changed = true;
+        while (changed) {
+            changed = false;
+            for (Parent p : allList) {
+                if (matchedIds.contains(p.getId())) {
+                    // 加父节点
+                    if (p.getParentId() != null && p.getParentId() != 0 && !matchedIds.contains(p.getParentId())) {
+                        matchedIds.add(p.getParentId());
+                        changed = true;
+                    }
+                    // 加所有子节点
+                    for (Parent child : allList) {
+                        if (child.getParentId() != null &&
+                                child.getParentId().equals(p.getId()) &&
+                                !matchedIds.contains(child.getId())) {
+                            matchedIds.add(child.getId());
+                            changed = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        List<Parent> result = allList.stream()
+                .filter(p -> matchedIds.contains(p.getId()))
+                .collect(Collectors.toList());
+
+        return R.success("查询成功", result);
+    }
 }
+

@@ -2,7 +2,7 @@ import axios from "axios"
 import { ElMessage } from 'element-plus'
 const service = axios.create({
     baseURL: "/api",
-    timeout: 1000
+    timeout: 10000
 })
 
 service.interceptors.request.use((config) => {
@@ -17,7 +17,7 @@ service.interceptors.response.use((res) => {
         ElMessage({
             message: res.data.msg,
             type: 'error',
-            duration:2000
+            duration: 2000
         })
     }
 

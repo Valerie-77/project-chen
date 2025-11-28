@@ -71,4 +71,11 @@
         from users
         where id = #{id}
     </delete>
+    <select id="searchUser" parameterType="string" resultType="com.system.asset05.entity.User">
+        SELECT * FROM users
+        WHERE username LIKE CONCAT('%', #{keyword}, '%')
+           OR real_name LIKE CONCAT('%', #{keyword}, '%')
+    </select>
+    
 </mapper>
+

@@ -3,6 +3,28 @@ import service from "@/utils/request"
 import { ElMessage, ElMessageBox } from "element-plus";
 import { onMounted, ref, nextTick } from 'vue';
 
+const total = ref(0)
+const searchKeyword = ref('')
+
+const loadData = async () => {
+  try {
+    const res = searchKeyword.value
+      ? await service.get(`/user/search?keyword=${encodeURIComponent(searchKeyword.value)}`)
+      : await service.get('/user/list/1/1000')
+    if (res.code === 200) {
+      tableData.value = res.data.data || res.data
+      total.value = res.data.total || res.data.length || 0
+    }
+  } catch (error) {
+
+  }
+}
+
+// 页面加载和搜索时都调用这个
+onMounted(() => {
+  loadData()
+})
+
 const userData = ref({});
 const tableData = ref([]);
 const currentPage = ref(1);
@@ -33,7 +55,7 @@ const getUser = async (page) => {
     tableData.value = result.data.data || [];
     currentPage.value = page;
   } catch (error) {
-    console.error("获取用户数据失败:", error);
+
   }
 }
 
@@ -204,6 +226,20 @@ const customUpload = (options) => {
 }
 </script>
 <template>
+
+  <div class="operation-bar">
+    <el-input v-model="searchKeyword" placeholder="请输入关键词搜索" style="width: 240px; margin-right: 12px" clearable
+      @clear="loadData" @keyup.enter="loadData">
+      <template #prepend>
+        <el-button @click="loadData">
+          <el-icon>
+            <Search />
+          </el-icon>
+        </el-button>
+      </template>
+    </el-input>
+  </div>
+
   <div class="user-container">
     <!-- 标题区域 -->
     <div class="page-header">

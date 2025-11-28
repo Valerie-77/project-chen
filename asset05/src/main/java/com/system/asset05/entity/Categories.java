@@ -1,31 +1,37 @@
 package com.system.asset05.entity;
 
-import java.time.LocalDate;
+import com.baomidou.mybatisplus.annotation.*;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
+@TableName("categories")
 public class Categories {
-    private int id;
-    private int parentId;
+    @TableId(type = IdType.AUTO)
+    private Integer id;
+
+    private Integer parentId;
     private String name;
     private String remark;
-    private LocalDateTime createTime;    // 修改这里
-    private LocalDateTime updateTime;    // 修改这里
 
-    // getter 和 setter 方法
-    public int getId() {
+    @TableField(fill = FieldFill.INSERT)
+    private LocalDateTime createTime;
+
+    @TableField(fill = FieldFill.INSERT_UPDATE)
+    private LocalDateTime updateTime;
+
+    // 原有的 getter 和 setter 方法保持不变
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getParentId() {
+    public Integer getParentId() {
         return parentId;
     }
 
-    public void setParentId(int parentId) {
+    public void setParentId(Integer parentId) {
         this.parentId = parentId;
     }
 
